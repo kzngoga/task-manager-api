@@ -42,6 +42,17 @@ class EmployeeController {
       return response(res, 500, error.message || error, null, ErrorTypes.Server);
     }
   }
+
+  static async getEmployee(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const employeeData = await EmployeeService.findEmployee({ _id: id });
+      if (!employeeData) return response(res, 404, 'Employee does not exists', null, ErrorTypes.NotFound);
+      return response(res, 200, 'Employee Details', employeeData);
+    } catch (error) {
+      return response(res, 500, error.message || error, null, ErrorTypes.Server);
+    }
+  }
 }
 
 export default EmployeeController;
