@@ -12,12 +12,9 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "prettier/prettier": [
-      "error",
-      { "endOfLine": "auto" },
-      { "usePrettierrc": true }
-    ],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }, { "usePrettierrc": true }],
     "camelcase": 0,
-    "indent": ["error", 2, { "SwitchCase": 1 }]
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "object-shorthand": ["error", "always", { "avoidQuotes": true, "ignoreConstructors": true }]
   }
 }
