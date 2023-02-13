@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import Controller from '../controllers/employee.controller';
-import * as Validations from '../middlewares/validation/employee/employeeValidations';
+import * as Validations from '../middlewares/validation/employee/employee.validations';
 import * as Authorization from '../middlewares/authorization';
 
 const router = Router();

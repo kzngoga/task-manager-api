@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from './../../../types/index';
+import { Request, Response, NextFunction } from '../../../types/index';
 import validator from '../../../helpers/validator';
 import addEmployeeSchema from './schemas/addEmployeeSchema';
 import updateEmployeeSchema from './schemas/updateEmployeeSchema';

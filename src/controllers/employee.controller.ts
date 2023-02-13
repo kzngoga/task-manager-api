@@ -6,7 +6,7 @@ class EmployeeController {
   static async fetchAllEmployees(req: Request, res: Response) {
     try {
       const employeeData = await EmployeeService.getAllEmployees();
-      if (employeeData.length === 0) return response(res, 404, 'No Employees Registered yet', null, ErrorTypes.NotFound);
+      if (!employeeData.length) return response(res, 404, 'No Employees Registered yet', null, ErrorTypes.NotFound);
       return response(res, 200, 'All Employees', employeeData);
     } catch (error) {
       return response(res, 500, error.message || error, null, ErrorTypes.Server);
