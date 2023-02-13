@@ -35,6 +35,22 @@ class TaskService {
       throw error;
     }
   }
+
+  static async deleteTask(task: string) {
+    try {
+      return await Task.findByIdAndDelete(task);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async updateTask(filter: { _id: string }, updateBody: any) {
+    try {
+      return await Task.findOneAndUpdate(filter, updateBody, { new: true });
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default TaskService;

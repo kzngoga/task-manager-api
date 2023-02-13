@@ -9,9 +9,7 @@ interface UpdateEmployeeInput {
 
 export default Joi.object<UpdateEmployeeInput>()
   .keys({
-    name: Joi.string()
-      .optional()
-      .error(() => "Name can't be empty"),
+    name: Joi.string().optional(),
     phone: Joi.string().min(10).max(10).optional(),
     email: Joi.string().email().optional(),
     isManager: Joi.boolean().optional(),
