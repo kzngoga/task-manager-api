@@ -35,7 +35,7 @@ class TaskController {
     try {
       const { id } = req.params;
       const userExists = EmployeeService.findEmployee({ _id: id });
-      if (!userExists) return response(res, 404, "User doesn't exist", null, ErrorTypes.NotFound);
+      if (!userExists) return response(res, 404, "Employee doesn't exist", null, ErrorTypes.NotFound);
 
       const tasks = await TaskService.getUserTasks(id);
       if (!tasks.length) return response(res, 404, 'No tasks data found', null, ErrorTypes.NotFound);
@@ -63,7 +63,7 @@ class TaskController {
     try {
       const { id } = req.params;
       const taskExists = TaskService.findTask({ _id: id });
-      if (!taskExists) return response(res, 404, "Task doesn't exits", null, ErrorTypes.NotFound);
+      if (!taskExists) return response(res, 404, "Task doesn't exit", null, ErrorTypes.NotFound);
 
       await TaskService.deleteTask(id);
       return response(res, 200, 'Task Deleted', null);
@@ -77,7 +77,7 @@ class TaskController {
       const { id } = req.params;
       const { employee, title } = req.body;
       const taskExists = await TaskService.findTask({ _id: id });
-      if (!taskExists) return response(res, 404, "Task doesn't exits", null, ErrorTypes.NotFound);
+      if (!taskExists) return response(res, 404, "Task doesn't exist", null, ErrorTypes.NotFound);
 
       if (employee) {
         const employeeExist = await EmployeeService.findEmployee({ _id: employee });
@@ -86,12 +86,12 @@ class TaskController {
 
       if (employee && title) {
         const taskAssigned = await TaskService.findTask({ title, employee });
-        if (taskAssigned) return response(res, 409, 'This task is already assigned to this user', null, ErrorTypes.Conflict);
+        if (taskAssigned) return response(res, 409, 'This task is already assigned to this employee', null, ErrorTypes.Conflict);
       }
 
       if (!employee && title) {
         const taskAssigned = await TaskService.findTask({ title, employee: taskExists.employee.toString() });
-        if (taskAssigned) return response(res, 409, 'This task is already assigned to this user', null, ErrorTypes.Conflict);
+        if (taskAssigned) return response(res, 409, 'This task is already assigned to this employee', null, ErrorTypes.Conflict);
       }
 
       const updateTask = await TaskService.updateTask({ _id: id }, req.body);
