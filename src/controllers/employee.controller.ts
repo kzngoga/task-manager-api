@@ -30,7 +30,7 @@ class EmployeeController {
       const { id } = req.params;
       const { email } = req.body;
       const employeeExist = await EmployeeService.findEmployee({ _id: id });
-      if (!employeeExist) return response(res, 404, 'Employee does not exists', null, ErrorTypes.NotFound);
+      if (!employeeExist) return response(res, 404, 'Employee does not exist', null, ErrorTypes.NotFound);
 
       if (email) {
         const emailExists = await EmployeeService.findEmployee({ email });
@@ -47,7 +47,7 @@ class EmployeeController {
     try {
       const { id } = req.params;
       const employeeData = await EmployeeService.findEmployee({ _id: id });
-      if (!employeeData) return response(res, 404, 'Employee does not exists', null, ErrorTypes.NotFound);
+      if (!employeeData) return response(res, 404, 'Employee does not exist', null, ErrorTypes.NotFound);
       return response(res, 200, 'Employee Details', employeeData);
     } catch (error) {
       return response(res, 500, error.message || error, null, ErrorTypes.Server);
