@@ -63,7 +63,7 @@ class TaskController {
     try {
       const { id } = req.params;
       const taskExists = TaskService.findTask({ _id: id });
-      if (!taskExists) return response(res, 404, "Task doesn't exit", null, ErrorTypes.NotFound);
+      if (!taskExists) return response(res, 404, "Task doesn't exist", null, ErrorTypes.NotFound);
 
       await TaskService.deleteTask(id);
       return response(res, 200, 'Task Deleted', null);
